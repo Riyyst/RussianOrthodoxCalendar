@@ -1,0 +1,1148 @@
+
+:root {
+  --bg-page: #f4f1ea;
+  --bg-surface: #fcfbf7;
+  --bg-elevated: #ffffff;
+  --bg-muted: #f1ebe1;
+  --border-soft: #ded2c1;
+  --border-strong: #b79b72;
+  --ink-main: #241a11;
+  --ink-soft: #5b4b38;
+  --ink-muted: #9b8d79;
+  --accent: #7c3aed;
+  --accent-soft: #ede9fe;
+  --accent-strong: #5b21b6;
+  --fast-green: #15803d;
+  --fast-bg: #ecfdf3;
+  --danger: #b91c1c;
+  --gold: #b45309;
+  --shadow-soft: 0 20px 45px rgba(15, 23, 42, 0.22),
+    0 2px 8px rgba(15, 23, 42, 0.18);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at 0 0, #fef7c3 0, #f4f1ea 32%, #e5e7eb 80%),
+    radial-gradient(circle at 100% 100%, #f3e8ff, #ede9fe 48%, #e5e7eb 90%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.75rem 1rem;
+  color: var(--ink-main);
+}
+
+.app-shell {
+  width: 100%;
+  max-width: 1160px;
+  background: radial-gradient(circle at 0 0, #fdfaf3, #faf4e9 55%, #f9fafb);
+  border-radius: 1.75rem;
+  border: 1px solid rgba(183, 155, 114, 0.32);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* HEADER */
+
+.app-header {
+  padding: 1.3rem 1.8rem 1.1rem;
+  border-bottom: 1px solid rgba(183, 155, 114, 0.35);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(252, 249, 242, 0.98),
+      rgba(244, 236, 221, 0.96)
+    );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.header-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.app-mark {
+  width: 46px;
+  height: 46px;
+  border-radius: 16px;
+  background:
+    conic-gradient(
+      from 240deg,
+      #fee2e2,
+      #f97316,
+      #facc15,
+      #a5b4fc,
+      #f97316,
+      #fee2e2
+    );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 10px 26px rgba(248, 113, 22, 0.5),
+    0 0 0 1px rgba(254, 249, 195, 0.8);
+}
+
+.app-mark-cross {
+  font-size: 1.4rem;
+  color: #111827;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+.app-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  align-items: center;
+  text-align: center;
+}
+
+.app-tagline {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--ink-muted);
+}
+
+.app-title {
+  font-size: 1.55rem;
+  letter-spacing: 0.03em;
+  margin: 0;
+}
+
+.app-subtitle {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  max-width: 540px;
+}
+
+.header-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.hymn-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.1rem;
+}
+
+.hymn-main-btn {
+  border-radius: 999px;
+  border: 1px solid rgba(148, 132, 100, 0.55);
+  padding: 0.32rem 0.9rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  background: rgba(252, 251, 247, 0.96);
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+
+.hymn-main-btn:hover {
+  background: #f5f1e7;
+}
+
+.hymn-controls {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-size: 0.78rem;
+}
+
+.hymn-now-playing {
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  margin-top: 0.1rem;
+  text-align: center;
+}
+
+
+.hymn-controls.is-visible {
+  display: flex;
+}
+
+.hymn-secondary-btn {
+  border-radius: 999px;
+  border: 1px solid rgba(222, 210, 193, 0.9);
+  padding: 0.2rem 0.7rem;
+  background: #fdfaf5;
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.hymn-secondary-btn:hover {
+  background: #f4ecdf;
+}
+
+.hymn-volume input[type="range"] {
+  vertical-align: middle;
+}
+
+
+
+.calendar-toggle-group {
+  display: inline-flex;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 132, 100, 0.5);
+  background: rgba(252, 251, 247, 0.96);
+  padding: 0.16rem;
+  gap: 0.16rem;
+}
+
+.calendar-toggle-btn {
+  border-radius: 999px;
+  border: none;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  background: transparent;
+  color: var(--ink-soft);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.36rem;
+  cursor: pointer;
+}
+
+.calendar-toggle-btn span:first-child {
+  font-size: 0.95rem;
+}
+
+.calendar-toggle-btn.active {
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+}
+
+.header-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.meta-date {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.meta-icon {
+  font-size: 1.1rem;
+}
+
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+
+.meta-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.18rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 132, 100, 0.45);
+  background: rgba(248, 246, 240, 0.96);
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
+
+.meta-chip-tone {
+  border-color: rgba(129, 140, 248, 0.8);
+  background: #eef2ff;
+  color: #3730a3;
+}
+
+.subscribe-link {
+  margin-top: 0.1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  background: radial-gradient(circle at 0 0, #c4b5fd, #7c3aed);
+  color: #fefce8;
+  font-size: 0.84rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 8px 18px rgba(88, 28, 135, 0.45);
+}
+
+.subscribe-link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(88, 28, 135, 0.55);
+}
+
+.subscribe-icon {
+  font-size: 1.05rem;
+}
+
+.subscribe-text {
+  white-space: nowrap;
+}
+
+/* MAIN LAYOUT */
+
+.app-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.15fr);
+  gap: 1.35rem;
+  padding: 1.4rem 1.5rem 1.3rem;
+  opacity: 1;
+  transition: opacity 160ms ease-out;
+  will-change: opacity;
+}
+
+.app-main.is-updating {
+  opacity: 0;
+}
+
+
+.today-panel,
+.right-panel section {
+  background: var(--bg-elevated);
+  border-radius: 1.1rem;
+  border: 1px solid rgba(222, 210, 193, 0.9);
+  padding: 1rem 1.1rem 0.9rem;
+  box-shadow: 0 3px 7px rgba(15, 23, 42, 0.06);
+}
+
+.today-panel {
+  min-height: 18rem;
+}
+
+
+/* TODAY PANEL */
+
+.today-header {
+  border-bottom: 1px solid rgba(222, 210, 193, 0.9);
+  padding-bottom: 0.7rem;
+  margin-bottom: 0.8rem;
+}
+
+.today-label-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.today-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--ink-muted);
+}
+
+.today-label-date {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
+
+.today-label-prefix {
+  margin-right: 0.35rem;
+}
+
+
+.today-main-title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+/* Sections */
+
+.section-heading {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--ink-muted);
+  margin: 0 0 0.3rem;
+}
+
+.today-fast,
+.today-feasts,
+.today-saints,
+.today-notes {
+  margin-bottom: 0.75rem;
+}
+
+/* Saints */
+
+.saints-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+.saints-list li {
+  margin-bottom: 0.4rem;
+}
+
+.saint-name {
+  font-weight: 600;
+  color: var(--ink-main);
+  position: relative;
+  padding-left: 1.05rem;
+}
+
+.saint-name::before {
+  content: "✙";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 0.78rem;
+  color: #f97316;
+}
+
+.saint-description {
+  font-size: 0.84rem;
+  color: var(--ink-soft);
+  margin-top: 0.08rem;
+}
+
+/* Fasting */
+
+.fast-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.22rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(22, 163, 74, 0.55);
+  background: var(--fast-bg);
+  color: var(--fast-green);
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.fast-pill-icon {
+  font-size: 1rem;
+}
+
+.fast-main {
+  font-size: 0.9rem;
+  margin: 0;
+  color: var(--ink-main);
+}
+
+/* Feasts */
+
+
+
+
+
+.feast-name {
+  font-weight: 600;
+  color: var(--ink-main);
+}
+
+.feast-description {
+  font-size: 0.84rem;
+  color: var(--ink-soft);
+  margin-top: 0.08rem;
+}
+
+.feast-rank {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.22rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(245, 158, 11, 0.55);
+  background: #fffbeb;
+  color: #9a3412;
+  font-size: 0.82rem;
+  margin-bottom: 0.35rem;
+}
+
+.feast-rank-icon {
+  font-size: 1.05rem;
+}
+
+/* Notes */
+
+.notes-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+}
+
+.notes-list li {
+  margin-bottom: 0.2rem;
+}
+
+.error-text {
+  font-size: 0.84rem;
+  color: var(--danger);
+  margin-top: 0.3rem;
+}
+
+/* RIGHT PANEL */
+
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.panel-header {
+  margin-bottom: 0.6rem;
+}
+
+.panel-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.panel-header h3 {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.panel-sub {
+  margin: 0.2rem 0 0;
+  font-size: 0.84rem;
+  color: var(--ink-soft);
+}
+
+.month-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.month-nav button {
+  border-radius: 999px;
+  border: 1px solid var(--border-soft);
+  background: #f9fafb;
+  font-size: 0.85rem;
+  padding: 0.18rem 0.55rem;
+  cursor: pointer;
+  color: var(--ink-soft);
+}
+
+.month-nav button:hover {
+  background: #f3f4f6;
+}
+
+/* Chips */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  border: 1px solid rgba(222, 210, 193, 0.9);
+}
+
+.chip-soft {
+  background: var(--bg-muted);
+  color: var(--ink-soft);
+}
+
+.chip-small {
+  font-size: 0.78rem;
+  padding: 0.15rem 0.55rem;
+}
+
+/* Readings */
+
+.readings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.reading-card {
+  border-radius: 0.8rem;
+  border: 1px solid rgba(222, 210, 193, 0.9);
+  background: rgba(255, 255, 255, 0.98);
+  padding: 0.5rem 0.65rem;
+  font-size: 0.86rem;
+}
+
+.reading-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+}
+
+.reading-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+  flex: 1 1 auto;
+  min-width: 0; /* allow title to wrap instead of squeezing the toggle */
+}
+
+.reading-ref {
+  font-weight: 600;
+  color: var(--ink-main);
+}
+
+.reading-type {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-muted);
+}
+
+.reading-toggle {
+  font-size: 0.82rem;
+  color: var(--gold);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.reading-body {
+  margin-top: 0.35rem;
+  padding-top: 0.3rem;
+  border-top: 1px dashed rgba(222, 210, 193, 0.9);
+  font-size: 0.84rem;
+  color: var(--ink-soft);
+  white-space: pre-line;
+  line-height: 1.5;
+  display: none;
+}
+
+.reading-body.active {
+  display: block;
+}
+
+.muted {
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+}
+
+/* Month Grid */
+
+.month-grid {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  margin-top: 0.2rem;
+}
+
+.month-grid th {
+  text-align: center;
+  padding: 0.3rem 0.2rem;
+  font-weight: 600;
+  color: var(--ink-muted);
+}
+
+.month-grid td {
+  width: calc(100% / 7);
+  height: 2.1rem;
+  text-align: center;
+  padding: 0.15rem 0.1rem;
+}
+
+.month-day-inner {
+  display: inline-flex;
+  min-width: 1.9rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.15rem 0.4rem;
+  cursor: pointer;
+  transition: transform 140ms ease-out, background-color 140ms ease-out;
+}
+
+.month-day-inner:hover {
+  background: rgba(248, 246, 240, 0.9);
+}
+
+.month-day-selected .month-day-inner {
+  transform: scale(1.04);
+}
+
+
+.month-day-today .month-day-inner {
+  background: #eef2ff;
+  color: #4f46e5;
+  font-weight: 600;
+  border: 1px solid #4f46e5;
+}
+
+.month-day-empty {
+  color: #d1d5db;
+}
+
+/* FOOTER */
+
+
+
+/* RESPONSIVE */
+
+@media (max-width: 960px) {
+  .app-main {
+    grid-template-columns: minmax(0, 1fr);
+    padding-inline: 1.2rem;
+  }
+
+  .right-panel {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    padding-inline: 0.6rem;
+  }
+
+  .app-header {
+    padding-inline: 1.1rem;
+  }
+
+  .app-main {
+    padding-inline: 1.1rem;
+  }
+
+  
+}
+
+.month-day-selected .month-day-inner {
+  background: #eef2ff;
+  color: #4f46e5;
+  font-weight: 600;
+  border: 1px solid #4f46e5;
+}
+
+/* Extra: subtle dashed divider between Today sections */
+.today-section {
+  padding-top: 0.7rem;
+  margin-top: 0.4rem;
+  border-top: 1px dashed rgba(222, 210, 193, 0.9);
+}
+
+/* Fasting helper text style to match saint/feast descriptions */
+.fast-text {
+  font-size: 0.84rem;
+  color: var(--ink-soft);
+  margin-top: 0.08rem;
+}
+
+/* Centre and recolour the subscribe button to match the month label chip */
+.subscribe-row {
+  padding: 0.35rem 1.75rem 0.9rem;
+  display: flex;
+  justify-content: center;
+}
+.subscribe-link {
+  margin-top: 0;
+  background: var(--bg-muted);
+  color: var(--ink-soft);
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 3px 6px rgba(15, 23, 42, 0.25);
+}
+
+/* Calender style toggle in same tone as month chip (no purple accent) */
+.calendar-toggle-group {
+  background: var(--bg-muted);
+  border: 1px solid var(--border-soft);
+}
+.calendar-toggle-btn {
+  color: var(--ink-soft);
+}
+.calendar-toggle-btn.active {
+  background: var(--bg-surface);
+  color: var(--ink-main);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.18);
+}
+
+/* Logo container: remove gradient background; show only supplied icon */
+.app-mark {
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  width: auto;
+  height: auto;
+  padding: 0;
+}
+.app-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+/* Make tagline and civil date slightly larger / easier to read */
+.app-tagline {
+  font-size: 0.82rem;
+}
+.meta-date {
+  font-size: 0.98rem;
+  font-weight: 500;
+}
+
+/* Override purple glow on subscribe button completely */
+.subscribe-row .subscribe-link {
+  background: var(--bg-muted) !important;
+  color: var(--ink-soft) !important;
+  border: 1px solid var(--border-soft) !important;
+  box-shadow: 0 4px 8px rgba(15, 23, 42, 0.25) !important;
+}
+
+/* Center the month label within its box */
+.month-nav {
+  justify-content: center;
+}
+
+/* Make fasting bullets visually match saints/feasts */
+.fast-name {
+  font-weight: 600;
+  position: relative;
+  padding-left: 1.05rem;
+}
+.fast-name::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+}
+
+/* Remove solid underline under TODAY, leave only dashed section divider */
+.today-header {
+  border-bottom: none !important;
+  margin-bottom: 0.2rem;
+}
+
+/* Fasting list: remove outer bullets, align with saints/feasts */
+.fast-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure feast names have bullets aligned like fasting/saints */
+.feast-name {
+  font-weight: 600;
+  position: relative;
+  padding-left: 1.05rem;
+}
+.feast-name::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+}
+
+/* Make the liturgical date on the Today line slightly larger */
+.today-label-date {
+  font-size: 0.95rem;
+}
+
+/* Align fast headings with saints/feasts and use big list bullets for fast/feast items */
+.fast-list {
+  list-style: disc;
+  margin: 0 0 0 1.1rem;
+  padding: 0;
+}
+
+.fast-name {
+  font-weight: 600;
+  color: var(--ink-main);
+  position: static;
+  padding-left: 0;
+  font-size: 0.95rem;
+}
+
+.fast-name::before {
+  content: none;
+}
+
+/* Feasts list uses same big bullets as fasting */
+
+
+.feast-name {
+  font-weight: 600;
+  color: var(--ink-main);
+  position: static;
+  padding-left: 0;
+}
+
+/* Remove pseudo bullet if any */
+.feast-name::before {
+  content: none;
+}
+
+/* Forbidden foods list: no bullets, match helper text style */
+.fast-forbidden-list {
+  list-style: none;
+  margin: 0.25rem 0 0 0;
+  padding-left: 0;
+}
+
+.fast-forbidden-list li {
+  font-size: 0.84rem;
+  color: var(--ink-soft);
+}
+
+/* Make Today date one step larger again */
+.today-label-date {
+  font-size: 1rem;
+}
+
+/* Centre footer text */
+
+
+/* Small bullets for forbidden foods, same text style as helper */
+.fast-forbidden-list {
+  list-style: disc;
+  margin: 0.25rem 0 0 1.1rem;
+  padding-left: 0;
+}
+.fast-forbidden-list li {
+  font-size: 0.84rem;
+  color: var(--ink-soft);
+}
+
+/* Notes list styled similar to feasts/fasts */
+.notes-list {
+  list-style: disc;
+  margin: 0 0 0 1.1rem;
+  padding: 0;
+}
+.note-name {
+  font-weight: 600;
+  color: var(--ink-main);
+}
+.note-description {
+  font-size: 0.84rem;
+  color: var(--ink-soft);
+}
+
+
+/* Allowed / forbidden lists share same small bullet style */
+.fast-allowed-list,
+.fast-forbidden-list {
+  list-style: disc;
+  margin: 0.25rem 0 0 1.1rem;
+  padding-left: 0;
+}
+
+.fast-allowed-list li,
+.fast-forbidden-list li {
+  font-size: 0.84rem;
+  color: var(--ink-soft);
+}
+
+
+
+
+
+.fast-em {
+  text-decoration: underline;
+}
+
+
+
+
+.fast-forbid-label {
+  font-weight: 600;
+}
+
+.fast-em {
+  text-decoration: underline;
+}
+
+
+.feasts-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+.feasts-list li {
+  margin-bottom: 0.35rem;
+}
+
+
+.app-footer {
+  padding: 0.75rem 1.75rem 0.9rem;
+  border-top: 1px solid rgba(183, 155, 114, 0.35);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  background: rgba(248, 246, 240, 0.9);
+  text-align: center;
+}
+
+/* Footer link: same style as text, underline only on hover */
+.app-footer a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.app-footer a:hover {
+  text-decoration: underline;
+}
+
+
+/* Extra space between Commemorations, Fasting and Feasts sections */
+.fast-section {
+  margin-top: 1.6rem;
+}
+
+.feasts-section {
+  margin-top: 1.6rem;
+}
+
+
+.today-fast.today-section,
+.today-feasts.today-section {
+  margin-top: 1.6rem;
+}
+
+
+/* Remove bullets/crosses from saints, fasting, and feasts lists */
+.saints-list,
+.fast-list,
+.feasts-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Plain headings without left icons */
+.saint-name,
+.fast-name,
+.feast-name {
+  font-weight: 600;
+  color: var(--ink-main);
+  position: static;
+  padding-left: 0;
+  font-size: 0.95rem;
+}
+
+.saint-name::before,
+.fast-name::before,
+.feast-name::before {
+  content: none;
+}
+
+
+/* Daily prayers panel */
+.prayers-panel .panel-header h3 {
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+
+.prayers-panel .panel-sub {
+  margin-top: 0.1rem;
+  font-size: 0.82rem;
+}
+
+.prayer-category-name {
+  font-weight: 600;
+  color: var(--ink-main);
+  font-size: 0.95rem;
+}
+
+.prayer-item {
+  padding-top: 0.4rem;
+  margin-top: 0.4rem;
+}
+
+/* only draw a dashed separator between successive prayers, 
+   so there's not a double line under the section heading */
+.prayer-item + .prayer-item {
+  border-top: 1px dashed rgba(222, 210, 193, 0.8);
+}
+
+.prayer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.prayer-title {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--ink-main);
+}
+
+.prayer-toggle {
+  font-size: 0.8rem;
+  color: var(--gold);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.prayer-body {
+  margin-top: 0.3rem;
+  font-size: 0.84rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+/* Center month navigation in Today date selector */
+.today-date .date-header-center {
+  justify-content: center;
+}
+
+.today-date .month-nav {
+  justify-content: center;
+}
+
+
+
+.hymn-loop-btn.is-active {
+  background: #f4ecdf;
+  border-color: rgba(222, 210, 193, 1);
+}

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Russian Orthodox Daily Calendar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Russian Orthodox daily calendar with feasts, saints, fasting rules and scripture readings."
+  />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" type="image/png" href="assets/images/Orthodox-Cross.png" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <div class="header-top">
+        <div class="app-mark">
+          <img src="assets/images/Orthodox-Cross.png" alt="Orthodox cross" class="app-logo" />
+        </div>
+        <div class="app-title-group">
+          <div class="app-tagline">RUSSIAN ORTHODOX CALENDAR</div>
+          <h1 class="app-title">Today in the Church</h1>
+          <p class="app-subtitle">
+            Feasts, saints, fasting rules and scripture readings.
+          </p>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <div class="calendar-toggle-group" aria-label="Calendar style">
+          <button type="button" id="toggle-julian" class="calendar-toggle-btn active">
+            <span>Old Calendar (Julian)</span>
+          </button>
+          <button type="button" id="toggle-gregorian" class="calendar-toggle-btn">
+            <span>New Calendar (Gregorian)</span>
+          </button>
+        </div>
+
+        <div class="header-meta">
+          <div class="meta-date">
+            <span id="civil-date">—</span>
+          </div>
+        </div>
+        <div class="hymn-player">
+          <button type="button" id="hymn-random-btn" class="hymn-main-btn">
+            Click here to listen to chants
+          </button>
+          <div id="hymn-controls" class="hymn-controls">
+            <button type="button" id="hymn-prev" class="hymn-secondary-btn hymn-skip-btn" aria-label="Previous chant">
+              ⏮
+            </button>
+            <button type="button" id="hymn-play-pause" class="hymn-secondary-btn hymn-play-btn" aria-label="Play or pause chant">
+              ▶
+            </button>
+            <button type="button" id="hymn-next" class="hymn-secondary-btn hymn-skip-btn" aria-label="Next chant">
+              ⏭
+            </button>
+            <button type="button" id="hymn-loop" class="hymn-secondary-btn hymn-loop-btn" aria-label="Loop current chant">
+              🔁
+            </button>
+            <label class="hymn-volume">
+              Volume
+              <input type="range" id="hymn-volume" min="0" max="1" step="0.01" value="0.2" />
+            </label>
+          </div>
+          <audio id="hymn-audio"></audio>
+          <p id="hymn-now-playing" class="hymn-now-playing" style="display:none;"></p>
+        </div>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <!-- LEFT: Today details -->
+      <section class="today-panel">
+        <header class="today-header">
+          <div class="today-label-row">
+            
+            <div class="liturgical-date-line">
+              <span id="calendar-date-label" class="today-label-date today-label-prefix">—</span>
+              <span id="liturgical-date" class="today-label-date">—</span>
+            </div>
+          </div>
+        </header>
+
+        <section class="today-saints today-section">
+          <h3 class="section-heading">Commemorations</h3>
+          <ul id="saints-list" class="list saints-list"></ul>
+        </section>
+
+        <section class="today-fast today-section">
+          <h3 class="section-heading">Fasting</h3>
+          <ul id="fast-list" class="list fast-list"></ul>
+        </section>
+
+        <section class="today-feasts today-section">
+          <h3 class="section-heading">Feasts</h3>
+          <ul id="feast-list" class="list feasts-list"></ul>
+        </section>
+
+        <section id="service-notes" class="today-notes today-section" style="display:none;">
+          <h3 class="section-heading">Liturgical notes</h3>
+          <ul id="service-notes-list" class="list notes-list"></ul>
+        </section>
+
+        
+        <section class="today-date today-section">
+
+          <header class="panel-header panel-header-row date-header-center">
+            <div class="month-nav">
+              <button type="button" id="prev-month" aria-label="Previous month">‹</button>
+              <div id="month-label" class="chip chip-soft chip-small">—</div>
+              <button type="button" id="next-month" aria-label="Next month">›</button>
+            </div>
+          </header>
+          <table class="month-grid" aria-label="Date selector calendar">
+            <thead>
+              <tr>
+                <th>Sun</th>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th>
+              </tr>
+            </thead>
+            <tbody id="month-grid-body"></tbody>
+          </table>
+        
+        </section>
+
+<p id="summary-error" class="error-text" style="display:none;"></p>
+      </section>
+
+      <!-- RIGHT: Readings + Date selector -->
+      <section class="right-panel">
+        <section class="readings-panel">
+          <header class="panel-header">
+            <h3>Scripture readings</h3>
+            <p class="panel-sub">
+              References are provided with the passage text.
+            </p>
+          </header>
+          <div id="readings-list" class="readings-list"></div>
+          <p id="readings-empty" class="muted" style="display:none;">
+            No specific readings are listed for this day.
+          </p>
+        </section>
+        <section class="prayers-panel">
+          <header class="panel-header">
+            <h3>Daily Prayers</h3>
+            <p class="panel-sub">
+              Traditional Orthodox prayers grouped by theme and time of day.
+            </p>
+          </header>
+          <div id="prayer-category-list" class="readings-list"></div>
+        </section>
+
+
+        
+      </section>
+    </main>
+
+    
+
+    <footer class="app-footer">
+      <span>© 2025 <a href="https://www.adrianheadley.com" target="_blank" rel="noopener noreferrer">Adrian Headley</a>.</span>
+    </footer>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
