@@ -569,49 +569,57 @@ function normalizeReadingText(raw) {
   return cleaned.join("\n\n");
 }
 
-function findCommemorationDetail(data, name) {
-    if (!data || !name) return "";
-    const n = name.trim().toLowerCase();
 
-    // Helper: deep search data for a long string mentioning this name
-    function deepSearch(obj) {
-      if (!obj || typeof obj !== "object") return "";
-      if (Array.isArray(obj)) {
-        for (const v of obj) {
-          const res = typeof v === "object" ? deepSearch(v) : "";
-          if (res) return res;
-        }
-        return "";
+function findCommemorationDetail(data, name) {
+  if (!data || !name) return "";
+  const n = name.trim().toLowerCase();
+
+  // Helper: deep search data for a long string mentioning this name
+  function deepSearch(obj) {
+    if (!obj || typeof obj !== "object") return "";
+    if (Array.isArray(obj)) {
+      for (const v of obj) {
+        const res = typeof v === "object" ? deepSearch(v) : "";
+        if (res) return res;
       }
-      // obj is a plain object
-      let candidate = "";
-      for (const key of Object.keys(obj)) {
-        const v = obj[key];
-        if (typeof v === "string") {
-          const text = v.trim();
-          if (text.length > 200) {
-            const tLower = text.toLowerCase();
-            // Require that at least one significant word from the name appears in the text
-            const tokens = n.split(/\s+/).filter((w) => w.length > 3);
-            let hits = 0;
-            for (const w of tokens) {
-              if (tLower.includes(w)) {
-                hits++;
-                if (hits >= 2) {
-                  return text;
-                }
+      return "";
+    }
+    // plain object
+    for (const [key, value] of Object.entries(obj)) {
+      if (typeof value === "string") {
+        const text = value.trim();
+        if (text.length > 200) {
+          const tLower = text.toLowerCase();
+          // Only use significant words from the saint's name, not generic titles
+          const STOP_WORDS = new Set([
+            "saint","st","holy","most","great","martyr","martyrs","venerable",
+            "apostle","hieromartyr","wonderworker","and","of","the","with",
+            "from","in","on","for","to","our","father","mother","virgin",
+            "confessor","bishop","priest","monk","nun","new","equal","apostles"
+          ]);
+          const tokens = n
+            .split(/\s+/)
+            .map((w) => w.replace(/[^\p{L}\p{N}]/gu, ""))
+            .filter((w) => w.length > 3 && !STOP_WORDS.has(w));
+          let hits = 0;
+          for (const w of tokens) {
+            if (tLower.includes(w)) {
+              hits++;
+              if (hits >= 2) {
+                return text;
               }
             }
           }
-        } else if (typeof v === "object") {
-          const res = deepSearch(v);
-          if (res) return res;
         }
+      } else if (typeof value === "object") {
+        const res = deepSearch(value);
+        if (res) return res;
       }
-      return candidate;
     }
+    return "";
+  }
 
-    // Try a 'commemorations' array if present
+  // Try a 'commemorations' array if present
     if (Array.isArray(data.commemorations)) {
       for (const item of data.commemorations) {
         const title = (item.title || item.name || item.commemoration || "").trim();
@@ -643,14 +651,14 @@ function findCommemorationDetail(data, name) {
       }
     }
 
-    // Fallback: deep search any nested long text that mentions this name
-    const deep = deepSearch(data);
-    if (deep) return deep;
+    
 
-    return "";
-  }
+  // Fallback: deep search any nested long text that mentions this name
+  const deep = deepSearch(data);
+  if (deep) return deep;
 
-
+  return "";
+}
 function findFeastDetail(data, name) {
   if (!data || !name) return "";
   const n = name.trim().toLowerCase();
