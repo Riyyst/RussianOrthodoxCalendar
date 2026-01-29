@@ -30,16 +30,23 @@ html,
 body {
   margin: 0;
   padding: 0;
+
+  background-color: #f4f1ea;
 }
 
 body {
   min-height: 100vh;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
     "Segoe UI", sans-serif;
-  background:
-    radial-gradient(circle at 0 0, #fef7c3 0, #f4f1ea 32%, #e5e7eb 80%),
-    radial-gradient(circle at 100% 100%, #f3e8ff, #ede9fe 48%, #e5e7eb 90%);
-  display: flex;
+
+  /* Background image (fills screen; preserves aspect ratio, may crop slightly) */
+  background-image: url("../images/church-background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-color: #f4f1ea; /* fallback */
+display: flex;
   align-items: center;
   justify-content: center;
   padding: 1.75rem 1rem;
@@ -61,7 +68,7 @@ body {
 /* HEADER */
 
 .app-header {
-  padding: 1.3rem 1.8rem 1.1rem;
+  padding: 1.7rem 1.8rem 1.1rem;
   border-bottom: 1px solid rgba(183, 155, 114, 0.35);
   background:
     linear-gradient(
@@ -83,9 +90,9 @@ body {
 }
 
 .app-mark {
-  width: 46px;
-  height: 46px;
-  border-radius: 16px;
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
   background:
     conic-gradient(
       from 240deg,
@@ -157,6 +164,8 @@ body {
   border-radius: 999px;
   border: 1px solid rgba(148, 132, 100, 0.55);
   padding: 0.32rem 0.9rem;
+  overflow: visible;
+
   font-size: 0.8rem;
   font-weight: 500;
   background: rgba(252, 251, 247, 0.96);
@@ -805,8 +814,8 @@ body {
   padding: 0;
 }
 .app-logo {
-  width: 32px;
-  height: 32px;
+  width: 64px;
+  height: 64px;
   border-radius: 6px;
   object-fit: cover;
 }
@@ -1145,4 +1154,20 @@ body {
 .hymn-loop-btn.is-active {
   background: #f4ecdf;
   border-color: rgba(222, 210, 193, 1);
+}
+
+@media (min-width: 768px) {
+  .app-logo {
+    width: 84px;
+    height: 84px;
+  }
+  .app-mark { width: 92px; height: 92px; padding: 12px; border-radius: 24px; }
+}
+
+
+
+@media (hover: none) and (pointer: coarse) {
+  body {
+    background-attachment: scroll;
+  }
 }
